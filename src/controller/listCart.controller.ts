@@ -141,11 +141,17 @@ export async function ClearCart() {
 
 export async function SubmitCart(req: Request, res: Response) {
   try {
-    const { idProduto, idUser, quantidade } = req.body;
-    console.log(idProduto, idUser, quantidade);
+    const { 
+      user_id, 
+      nome_user, 
+      item_id, 
+      nome_item,
+      tipo_movimentacao,
+      quantidade
+    } = req.body;
     const result = await db.query(
-      "SELECT public.movimenta_estoque($1, $2,'entrada', $3)",
-      [idUser, idProduto, quantidade]
+      "SELECT public.movimenta_estoque($1, $2, $3, $4, $5, $6)",
+      [user_id, nome_user, item_id, nome_item, tipo_movimentacao, quantidade]
     );
 
     ClearCart();
@@ -158,7 +164,7 @@ export async function SubmitCart(req: Request, res: Response) {
   } catch (err) {
     res.status(500).json({
       error: err,
-      message: "Erro ao realizar compra",
+      message: err.message | "Erro ao realizar compra",
       success: false,
     });
   }
