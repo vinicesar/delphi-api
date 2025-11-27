@@ -7,6 +7,7 @@ import routerListItens from "./routes/listItens.routes";
 import routerListStock from "./routes/listStock.routes";
 import routerListHistory from "./routes/listHistory.routes";
 import routerListCart from "./routes/listCart.routes";
+import routerConsumo from "./routes/consumo.routes";
 
 const app = express();
 
@@ -23,6 +24,8 @@ app.use(routerListItens);
 app.use(routerListStock);
 app.use(routerListHistory);
 app.use(routerListCart);
+app.use(routerConsumo
+);
 
 app.listen(3000, () => {
   db.connect()

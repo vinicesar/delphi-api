@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { db } from "../db";
-import { getMe } from "./user.controller";
 
 export async function listCart(req: Request, res: Response) {
   try {
@@ -164,7 +163,7 @@ export async function SubmitCart(req: Request, res: Response) {
   } catch (err) {
     res.status(500).json({
       error: err,
-      message: err.message | "Erro ao realizar compra",
+      message: "Erro ao realizar compra",
       success: false,
     });
   }
